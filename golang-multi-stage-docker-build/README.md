@@ -18,8 +18,7 @@ So the real advantage of multi stage docker build and distro less images can be 
 ## Benefits:
 - Smaller Images: The final image is smaller because it excludes build tools and dependencies.
 - Cleaner Images: Avoids clutter in the final image, leading to better security and performance.
--  multi-stage builds help in creating more efficient and ma
-- nageable Docker images by separating the build and runtime environments within a single Dockerfile.
+-  multi-stage builds help in creating more efficient and manageable Docker images by separating the build and runtime environments within a single Dockerfile.
 
 ## Why Use Multiple Stages?
 - Separate Concerns: Each stage has a distinct role (building, testing, serving).
