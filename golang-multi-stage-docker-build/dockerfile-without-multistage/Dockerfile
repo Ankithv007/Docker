@@ -1,15 +1,20 @@
-###########################################
-# BASE IMAGE
-###########################################
+# Use the official Go image
+FROM golang:1.20
 
-FROM ubuntu AS build
+# Set the Current Working Directory inside the container
+WORKDIR /app
 
-RUN apt-get update && apt-get install -y golang-go
+# Copy the Go module files
+COPY go.mod go.sum ./
 
-ENV GO111MODULE=off
+# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
+RUN go mod download
 
+# Copy the source code into the container
 COPY . .
 
-RUN CGO_ENABLED=0 go build -o /app .
+# Build the Go app
+RUN go build -o calculator .
 
-ENTRYPOINT ["/app"]
+# Command to run the executable
+CMD ["./calculator"]
