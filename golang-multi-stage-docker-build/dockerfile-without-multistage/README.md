@@ -36,3 +36,4 @@ gcr.io/distroless/base-debian11   latest    2a6de77407bf   N/A              20.6
 ```
 docker run --rm calculator-app -op add -a 5 -b 3
 ```
+- https://chatgpt.com/share/c90e35c4-8490-453a-a681-8d5c6f0d9839
