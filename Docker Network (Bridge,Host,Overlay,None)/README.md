@@ -54,3 +54,60 @@
 - Scalability: Easily scale services across multiple hosts without worrying about network complexity.
 - Security: Overlay networks can provide encrypted communication between containers.
   #### An Overlay Network abstracts the network details and allows containers across multiple Docker hosts to communicate as if they were on the same local network. This is crucial for container orchestration platforms like Docker Swarm and Kubernetes, which manage containerized applications across a cluster of machines.
+
+# lets create one for future undersatnd 
+### Run the New Container
+```
+docker run -d --name my-nginx-new nginx
+```
+```
+docker run -d --name login nginx
+docker run -d --name logout nginx
+```
+- login is the  container created from the ngix
+- nginx  is the pre-build  image available from Docker Hub
+- these two for bridge network
+
+### for check to know whether docker conatiner is created or not (docker ps )
+```
+docker ps -a
+```
+```
+docker ps --filter "status=running"
+docker ps -a --filter "status=exited"
+```
+###  Inspect a Specific Container ( to know the ip adress and we install the ping to ping the ip with help of subnet and cidr)
+```
+docker inspect <container_id_or_name>
+```
+```
+sudo apt-get install iputils-ping
+```
+### to get interactive terminal fop Docker( in my- conatiner conatiner name)
+```
+docker exec -it my-container /bin/bash
+```
+```
+docker exec -it login /bin/bash
+```
+```
+docker exec -it logout /bin/bash
+```
+### ping the ip adress by taking ip adress from using (docker inspect <conatiner id /name>)
+
+## for custome bridge
+- create network for that 
+## create network 
+```
+docker network create secure-network
+```
+## check for network list
+```
+docker network ls
+```
+
+```
+docker run -d --name finance --network=secure-network nginx
+```
+- after this try to ping with login it wont ping at all 
+ 
