@@ -55,6 +55,35 @@ docker volume rm my_volume
 - Without volumes: If the server container is deleted, all user files are lost.
 - With volumes: The user files remain stored in the Docker volume, and you can start a new container that still has access to the same data.
 
+  ### to create volume
+  ```
+  docker volume create <vol name >
+  docker volume create ankith
+  ```
+  ### list the volume
+  ```
+  docker volume ls
+  ```
+  ### to inspect the volume
+  ```
+  docker volume inspect <vol name>
+  docker volume inspect ankith
+  ```
+  ### to add the volume while creating the docker container
+  ```
+  docker run -d --name deepu --mount source=ankith,target=/app nginx
+  
+  docker run -d  --mount source=ankith,target=/app nginx
+  ```
+  - name this is a container name
+  - source is the volume name what you created earlier
+  - target is conatiner target
+  - nginx is the image name 
+### inspect the coantiner
+ ```
+docker inspect <conatianer name /id>
+```
+
 # What is a Bind Mount?
 #### A bind mount is when you take a specific folder or file from your computer (the host)(any local it may S3 bucket or ec2) and make it available inside your Docker container.
 ####  It means that the container can use and modify the files on your computer directly.
@@ -76,6 +105,9 @@ docker volume rm my_volume
  ```
 docker run -d -v /home/ankith/my-web-app:/usr/src/app my_image
 ```
+```
+docker run -d --name ankith -v /home/ubuntu:/root/ nginx
+```
 - Here, /home/ankith/my-web-app is the host folder (your project folder).
 - /usr/src/app is the container folder where the files will appear inside the container.
 - my_image is the Docker image you are running.
@@ -84,6 +116,7 @@ docker run -d -v /home/ankith/my-web-app:/usr/src/app my_image
 ### Why Use Bind Mounts?
 - Live code updates: Perfect for development. If you edit a file on your computer, it automatically updates inside the container.
 - No need to rebuild: You don’t need to rebuild your Docker image every time you make a code change. The changes reflect instantly in the container
+- it help to reduce the voulme in container it only increse the volume in host level not in container why because it share the volume between host anything increses it increses in host 
 
 
 ### A bind mount is a way to "link" a folder from your computer to a folder inside a Docker container, allowing both to use the same files.
