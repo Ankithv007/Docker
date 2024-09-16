@@ -67,11 +67,14 @@ CMD ["--server.port=8080"]
 - Example: COPY . /app
 - Explanation: It copies everything in the current directory (denoted by .) from the local system into the /app directory in the container.
 - 
-### ADD:
+### ADD: 
  - ` ADD <source> <destination> `
  - Purpose: This is similar to COPY, but it can also retrieve files from remote URLs and automatically decompress tar files.
  - Example: ADD my-archive.tar.gz /app/
  - Explanation: This will copy the my-archive.tar.gz file into the /app/ directory inside the container and automatically extract it.
+ -  A TAR file (Tape Archive file) is a type of archive file used to combine multiple files into one. It’s often used in Unix/Linux environments for backing up data, distributing multiple files together, or compressing them for storage or sharing.
+ -  File Packaging: A TAR file collects many files into a single file without compression, preserving their structure (folders, subfolders, and file metadata).
+ -  File Format: The file extension is typically .tar. You might also encounter compressed TAR files, such as .tar.gz or .tar.bz2, which are compressed using Gzip or Bzip2, respectively.
   
 ### RUN:
   - `RUN <command> `
