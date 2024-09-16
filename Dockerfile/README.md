@@ -66,7 +66,12 @@ CMD ["--server.port=8080"]
 - Purpose: This copies files or directories from your local file system (source) into the Docker image (destination).
 - Example: COPY . /app
 - Explanation: It copies everything in the current directory (denoted by .) from the local system into the /app directory in the container.
-
+- 
+### ADD:
+ - ` ADD <source> <destination> `
+ - Purpose: This is similar to COPY, but it can also retrieve files from remote URLs and automatically decompress tar files.
+ - Example: ADD my-archive.tar.gz /app/
+ - Explanation: This will copy the my-archive.tar.gz file into the /app/ directory inside the container and automatically extract it.
   
 ### RUN:
   - `RUN <command> `
@@ -97,12 +102,6 @@ CMD ["--server.port=8080"]
  - Purpose: This sets environment variables inside the container.
  - Example: ENV APP_ENV=production
  - Explanation: This defines an environment variable APP_ENV with the value production that will be available to your application when it runs.
-
-### ADD:
- - ` ADD <source> <destination> `
- - Purpose: This is similar to COPY, but it can also retrieve files from remote URLs and automatically decompress tar files.
- - Example: ADD my-archive.tar.gz /app/
- - Explanation: This will copy the my-archive.tar.gz file into the /app/ directory inside the container and automatically extract it.
 
  ### VOLUME:
  - `VOLUME ["/path/to/directory"]`
