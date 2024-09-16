@@ -1,39 +1,39 @@
-# Step 1: Use an official OpenJDK runtime as a parent image
+#### Step 1: Use an official OpenJDK runtime as a parent image
 FROM openjdk:11-jre-slim
 
-# Step 2: Set the working directory inside the container
+#### Step 2: Set the working directory inside the container
 WORKDIR /app
 
-# Step 3: Copy the current directory contents into the container at /app
+#### Step 3: Copy the current directory contents into the container at /app
 COPY . /app
 
-# Step 4: Install any necessary dependencies (in this case, curl)
+#### Step 4: Install any necessary dependencies (in this case, curl)
 RUN apt-get update && apt-get install -y curl
 
-# Step 5: Set environment variables
+#### Step 5: Set environment variables
 ENV APP_ENV=production
 ENV APP_VERSION=1.0
 
-# Step 6: Expose the port your application will run on
+#### Step 6: Expose the port your application will run on
 EXPOSE 8080
 
-# Step 7: Define a volume to persist data
+#### Step 7: Define a volume to persist data
 VOLUME ["/app/data"]
 
-# Step 8: Add a tar file containing additional resources
+#### Step 8: Add a tar file containing additional resources
 ADD resources.tar.gz /app/resources/
 
-# Step 9: Set up a health check to monitor the container's health
+#### Step 9: Set up a health check to monitor the container's health
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
   CMD curl -f http://localhost:8080/health || exit 1
 
-# Step 10: Switch to a non-root user
+#### Step 10: Switch to a non-root user
 USER 1001
 
-# Step 11: Set the entrypoint to always run the Java application
+#### Step 11: Set the entrypoint to always run the Java application
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
-# Step 12: Use CMD to provide default arguments that can be overridden at runtime
+#### Step 12: Use CMD to provide default arguments that can be overridden at runtime
 CMD ["--server.port=8080"]
 
  - FROM openjdk:11-jre-slim: This uses the OpenJDK 11 slim image as the base.
